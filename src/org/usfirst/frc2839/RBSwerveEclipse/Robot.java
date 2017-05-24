@@ -20,7 +20,6 @@ import org.usfirst.frc2839.RBSwerveEclipse.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static final Vision vision = new Vision();
     public static OI oi;
     Command autonomousCommand;//was above
     
