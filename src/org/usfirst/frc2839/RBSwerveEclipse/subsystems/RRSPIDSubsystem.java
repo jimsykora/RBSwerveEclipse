@@ -20,6 +20,9 @@ public class RRSPIDSubsystem extends PIDSubsystem {
     // here. Call these from Commands.
     AnalogInput rRSPot = RobotMap.rRSPIDSubsystemRRSPot;// was preceded by private final
     SpeedController rRSSpeedController = RobotMap.rRSPIDSubsystemRRSSpeedController;// was preceded by private final
+    public double getRRSPotAvgVolt(){
+    	return rRSPot.getAverageVoltage();
+    }
 
     // Initialize your subsystem here
     public RRSPIDSubsystem() {
@@ -51,8 +54,5 @@ public class RRSPIDSubsystem extends PIDSubsystem {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
         rRSSpeedController.pidWrite(output);
-    }
-    public void updateStatus(){    // added in SD video
-        SmartDashboard.putNumber("RRSPot",rRSPot.getAverageVoltage()); //adds sensor output to SmartDashboard
     }
 }

@@ -20,6 +20,15 @@ public class LFSPIDSubsystem extends PIDSubsystem {
     // here. Call these from Commands.
     AnalogInput lFSPot = RobotMap.lFSPIDSubsystemLFSPot;// was preceded by private final
     SpeedController lFSSpeedController = RobotMap.lFSPIDSubsystemLFSSpeedController;// was preceded by private final
+    public double getLFSPotAvgVolt(){
+    	return lFSPot.getAverageVoltage();
+    }
+    public double getLFSSetpoint(){
+    	return getPIDController().getSetpoint();
+    }
+    public double getLFSError(){
+    	return getPIDController().getError();
+    }
     
     // Initialize your subsystem here
     public LFSPIDSubsystem() {
@@ -51,8 +60,5 @@ public class LFSPIDSubsystem extends PIDSubsystem {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
         lFSSpeedController.pidWrite(output);
-    }
-    public void updateStatus(){    // added in SD video
-        SmartDashboard.putNumber("LFSPot",lFSPot.getAverageVoltage());//adds sensor output to SmartDashboard
     }
 }

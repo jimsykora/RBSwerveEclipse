@@ -21,6 +21,9 @@ public class RFDPIDSubsystem extends PIDSubsystem {
     // here. Call these from Commands.
     private final Encoder rFDEncoder = RobotMap.rFDPIDSubsystemRFDEncoder;
     private final SpeedController rFDSpeedController = RobotMap.rFDPIDSubsystemRFDSpeedController;
+    public double getRFDEncoderRate(){
+    	return rFDEncoder.getRate();
+    }
 
     // Initialize your subsystem here
     public RFDPIDSubsystem() {
@@ -52,8 +55,5 @@ public class RFDPIDSubsystem extends PIDSubsystem {
         // Use output to drive your system, like a motor
         // e.g. yourMotor.set(output);
         rFDSpeedController.pidWrite(output);
-    }
-    public void updateStatus(){    // added in SD video
-        SmartDashboard.putNumber("RFD Encoder",rFDEncoder.getRate());  //adds sensor output to SmartDashboard
     }
 }

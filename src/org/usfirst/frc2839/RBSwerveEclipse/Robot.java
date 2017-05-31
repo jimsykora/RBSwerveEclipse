@@ -31,6 +31,7 @@ public class Robot extends IterativeRobot {
     public static RRDPIDSubsystem rRDPIDSubsystem;
     public static LRSPIDSubsystem lRSPIDSubsystem;
     public static LRDPIDSubsystem lRDPIDSubsystem;
+    public static Telemetry telemetry;
     //public static GyroRangefinder gyroRangefinder;
     
     /**
@@ -47,6 +48,7 @@ public class Robot extends IterativeRobot {
         rRDPIDSubsystem = new RRDPIDSubsystem();
         lRSPIDSubsystem = new LRSPIDSubsystem();
         lRDPIDSubsystem = new LRDPIDSubsystem();
+        telemetry = new Telemetry();
 
         // OI must be constructed after subsystems. If the OI creates Commands
         //(which it very likely will), subsystems are not guaranteed to be
@@ -70,7 +72,7 @@ public class Robot extends IterativeRobot {
 
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
-        updateStatus();    // added in SD video
+        telemetry.update();  
     }
     
 	/**
@@ -114,7 +116,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        updateStatus();            // added in SD video
+        telemetry.update();  
     }
 
     /**
@@ -122,7 +124,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        updateStatus();            // added in SD video
+        telemetry.update();  
     }
 
     /**
@@ -130,17 +132,5 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
-    }
-    
-    public void updateStatus() {   //added in SD video
-        lFDPIDSubsystem.updateStatus();
-        lFSPIDSubsystem.updateStatus();
-        rFDPIDSubsystem.updateStatus();
-        rFSPIDSubsystem.updateStatus();
-        rRDPIDSubsystem.updateStatus();
-        rRSPIDSubsystem.updateStatus();
-        lRDPIDSubsystem.updateStatus();
-        lRSPIDSubsystem.updateStatus();
-        //gyroRangefinder.updateStatus();
     }
 }
